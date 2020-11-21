@@ -1,0 +1,1517 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="shortcut icon" href="img/Logo.png">
+	<meta name="author" content="Coffee Shout">
+	<meta charset="UTF-8">
+	<title>Coffee Shout</title>
+
+	<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
+	<link rel="stylesheet" href="css/linearicons.css">
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<link rel="stylesheet" href="css/magnific-popup.css">
+	<link rel="stylesheet" href="css/nice-select.css">
+	<link rel="stylesheet" href="css/animate.min.css">
+	<link rel="stylesheet" href="css/owl.carousel.css">
+	<link rel="stylesheet" href="css/main.css">
+
+	<style>
+		.button {
+			background-color: #4CAF50;
+			border: none;
+			color: white;
+			padding: 2px 5px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 16px;
+			margin: 4px 2px;
+			cursor: pointer;
+			border-radius: 4px;
+			float: right;
+		}
+
+		.num {
+			background-color: white;
+			width: 30px;
+			border: none;
+			color: darkgray;
+			padding: 2px 5px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 16px;
+			margin: 4px 2px;
+			cursor: pointer;
+			border-radius: 4px;
+			float: right;
+		}
+
+		.num2 {
+			background-color: white;
+			width: 30px;
+			border: none;
+			color: darkgray;
+			padding: 2px 5px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 16px;
+			margin: 4px 2px;
+			cursor: pointer;
+			border-radius: 4px;
+
+		}
+
+		.button2 {
+			background-color: #4CAF50;
+			border: none;
+			color: white;
+			padding: 2px 5px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 16px;
+			margin: 4px 2px;
+			cursor: pointer;
+			border-radius: 4px;
+			width: 25px;
+
+		}
+
+		.num2 {
+			background-color: white;
+			width: 35px;
+			border: none;
+			color: darkgray;
+			padding: 2px 5px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 16px;
+			margin: 4px 2px;
+			cursor: pointer;
+			border-radius: 4px;
+		}
+
+		input[type=text],
+		input[type=date],
+		input[type=password],
+		select,
+		textarea {
+			width: 72%;
+			padding: 5px;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+			resize: vertical;
+			float: right;
+		}
+
+		label {
+			padding: 5px 5px 5px 0;
+			display: inline-block;
+		}
+
+		.up {
+			width: 80px;
+			height: 80px;
+			position: fixed;
+			right: 10px;
+			bottom: 10px;
+			z-index: 100;
+		}
+	</style>
+	<script>
+
+		function kurang(aidi) {
+			var temp = parseInt(document.getElementById(aidi).innerHTML);
+			var temp2 = parseInt(document.getElementById(aidi + 6).innerHTML);
+			var temp3 = document.getElementById('stock' + aidi).innerHTML;
+			var temp4 = document.getElementById('stock' + (aidi + 6)).innerHTML;
+			if (temp != 0) {
+				document.getElementById(aidi).innerHTML = --temp;
+				document.getElementById(aidi + 6).innerHTML = --temp2;
+			}
+			else {
+				document.getElementById(aidi).innerHTML = 0;
+				document.getElementById(aidi + 6).innerHTML = 0;
+			}
+			if (temp < 5 && temp != 0) {
+				document.getElementById('stock' + aidi).innerHTML = ++temp3;
+				document.getElementById('stock' + (aidi + 6)).innerHTML = ++temp4;
+			} else if (temp == 0) {
+				document.getElementById('stock' + aidi).innerHTML = 5;
+				document.getElementById('stock' + (aidi + 6)).innerHTML = 5;
+			}
+			else {
+				document.getElementById('stock' + aidi).innerHTML = 0;
+				document.getElementById('stock' + (aidi + 6)).innerHTML = 0;
+			}
+		}
+
+		function tambah(aidi) {
+			var temp = document.getElementById(aidi).innerHTML;
+			var temp2 = document.getElementById(aidi + 6).innerHTML;
+			var temp3 = document.getElementById('stock' + aidi).innerHTML;
+			var temp4 = document.getElementById('stock' + (aidi + 6)).innerHTML;
+			document.getElementById(aidi).innerHTML = ++temp;
+			document.getElementById(aidi + 6).innerHTML = ++temp2;
+			if (temp3 != 0) {
+				document.getElementById('stock' + aidi).innerHTML = --temp3;
+				document.getElementById('stock' + (aidi + 6)).innerHTML = --temp4;
+			}
+			else {
+				document.getElementById('stock' + aidi).innerHTML = 0;
+				document.getElementById('stock' + (aidi + 6)).innerHTML = 0;
+			}
+		}
+
+		function reset() {
+			document.getElementById("od").innerHTML = "You have no orders yet.";
+			document.getElementById("sub").innerHTML = "Rp0";
+
+			for (var index = 1; index < 17; index++) {
+				document.getElementById(i).innerHTML = 0;
+				document.getElementById("stock" + i).innerHTML = 5;
+
+			}
+		}
+
+		function check() {
+			var cek = true;
+			var cek2 = true;
+			var nama = document.getElementById("fname").value;
+			var ph = document.getElementById("phone").value;
+			var tgl = document.getElementById("date").value;
+			var linee = document.getElementById("line").value;
+			var almt = document.getElementById("address").value;
+			var wktu = document.getElementById("time").value;
+			var satu = document.getElementById("1").innerHTML;
+			var dua = document.getElementById("2").innerHTML;
+			var tiga = document.getElementById("3").innerHTML;
+			var empat = document.getElementById("4").innerHTML;
+			var lima = document.getElementById("5").innerHTML;
+			var enam = document.getElementById("6").innerHTML;
+			var tujuh = document.getElementById("7").innerHTML;
+			var delapan = document.getElementById("8").innerHTML;
+			var sembilan = document.getElementById("9").innerHTML;
+			var sepuluh = document.getElementById("10").innerHTML;
+			var sebelas = document.getElementById("11").innerHTML;
+			var duabelas = document.getElementById("12").innerHTML;
+			var inpDate = new Date(tgl);
+			var currDate = new Date();
+
+			if (nama.length == 0 || ph.length == 0 || tgl.length == 0 || almt.length == 0 || wktu.length == 0) {
+				alert("Please complete the data to simplify the order process.");
+				cek = false;
+			}
+
+			if (cek == true) {
+				if (inpDate.setHours(0, 0, 0, 0) == currDate.setHours(0, 0, 0, 0)) {
+					if (satu > 5 || dua > 5 || tiga > 5 || empat > 5 || lima > 5 || enam > 5) {
+						alert("orders exceed the available stock today. to order drinks with an amount exceeding today's stock, can contact 0877 0080 1999 or can do PO");
+						if (satu > 5) {
+							document.getElementById("1").innerHTML = 5;
+							document.getElementById("stock1").innerHTML = 0;
+						}
+						if (dua > 5) {
+							document.getElementById("2").innerHTML = 5;
+							document.getElementById("stock2").innerHTML = 0;
+						}
+						if (tiga > 5) {
+							document.getElementById("3").innerHTML = 5;
+							document.getElementById("stock3").innerHTML = 0;
+						}
+						if (empat > 5) {
+							document.getElementById("4").innerHTML = 5;
+							document.getElementById("stock4").innerHTML = 0;
+						}
+						if (lima > 5) {
+							document.getElementById("5").innerHTML = 5;
+							document.getElementById("stock5").innerHTML = 0;
+						}
+						if (enam > 5) {
+							document.getElementById("6").innerHTML = 5;
+							document.getElementById("stock6").innerHTML = 0;
+						}
+						if (tujuh > 5) {
+							document.getElementById("7").innerHTML = 5;
+							document.getElementById("stock7").innerHTML = 0;
+						}
+						if (delapan > 5) {
+							document.getElementById("8").innerHTML = 5;
+							document.getElementById("stock8").innerHTML = 0;
+						}
+						if (sembilan > 5) {
+							document.getElementById("9").innerHTML = 5;
+							document.getElementById("stock9").innerHTML = 0;
+						}
+						if (sepuluh > 5) {
+							document.getElementById("10").innerHTML = 5;
+							document.getElementById("stock10").innerHTML = 0;
+						}
+						if (sebelas > 5) {
+							document.getElementById("11").innerHTML = 5;
+							document.getElementById("stock11").innerHTML = 0;
+						}
+						if (duabelas > 5) {
+							document.getElementById("12").innerHTML = 5;
+							document.getElementById("stock12").innerHTML = 0;
+						}
+						cek2 = false;
+					}
+				}
+				else if (inpDate.setHours(0, 0, 0, 0) < currDate.setHours(0, 0, 0, 0)) {
+					alert("order can only be made at least one day after today");
+					cek2 = false;
+				}
+			}
+
+			document.getElementById("nameO").innerHTML = nama + " ( " + ph;
+			if (linee.length != 0) {
+				document.getElementById("nameO").innerHTML += " - line : " + linee + ")";
+			}
+			else {
+				document.getElementById("nameO").innerHTML += ")";
+			}
+
+			document.getElementById("addO").innerHTML = almt;
+			document.getElementById("dateO").innerHTML = tgl;
+			document.getElementById("timeO").innerHTML = wktu;
+
+			if (cek2 == true && cek == true) {
+				$(document).ready(function () {
+					$("#menuModal").modal();
+					$("#myModal").modal("hide");
+				});
+			}
+		}
+
+		function buy() {
+			var cek = true;
+			var cek2 = true;
+			document.getElementById("od").innerHTML = "";
+
+			var satu = document.getElementById("1").innerHTML;
+			var dua = document.getElementById("2").innerHTML;
+			var tiga = document.getElementById("3").innerHTML;
+			var empat = document.getElementById("4").innerHTML;
+			var lima = document.getElementById("5").innerHTML;
+			var enam = document.getElementById("6").innerHTML;
+			var tujuh = document.getElementById("7").innerHTML;
+			var delapan = document.getElementById("8").innerHTML;
+			var sembilan = document.getElementById("9").innerHTML;
+			var sepuluh = document.getElementById("10").innerHTML;
+			var sebelas = document.getElementById("11").innerHTML;
+			var duabelas = document.getElementById("12").innerHTML;
+
+			var tgl = document.getElementById("date").value;
+			var total = (satu * 15000) + (dua * 15000) + (tiga * 17000) + (empat * 17000) + (lima * 17000) + (enam * 17000);
+			var inpDate = new Date(tgl);
+			var currDate = new Date();
+
+			if (satu != 0) {
+				document.getElementById("od").innerHTML += "<br>" + satu + "x &nbsp; Javanica <a style='float: right;' >Rp" + (satu * 15000) + "</a>";
+			}
+			if (dua != 0) {
+				document.getElementById("od").innerHTML += "<br>" + dua + "x &nbsp; Dark Javanica <a style='float: right;' >Rp" + (dua * 15000) + "</a>";
+			}
+			if (tiga != 0) {
+				document.getElementById("od").innerHTML += "<br>" + tiga + "x &nbsp; Pink Latte <a style='float: right;' >Rp" + (tiga * 17000) + "</a>";
+			}
+			if (empat != 0) {
+				document.getElementById("od").innerHTML += "<br>" + empat + "x &nbsp; Matcha <a style='float: right;' >Rp" + (empat * 17000) + "</a>";
+			}
+			if (lima != 0) {
+				document.getElementById("od").innerHTML += "<br>" + lima + "x &nbsp; Havana <a style='float: right;' >Rp" + (lima * 17000) + "</a>";
+			}
+			if (enam != 0) {
+				document.getElementById("od").innerHTML += "<br>" + enam + "x &nbsp; Mocha <a style='float: right;' >Rp" + (enam * 17000) + "</a>";
+			}
+			if (satu == 0 && dua == 0 && tiga == 0 && empat == 0 && lima == 0 && enam == 0) {
+				document.getElementById("od").innerHTML = "You have no orders yet.";
+			}
+			document.getElementById("sub").innerHTML = "Rp" + total;
+
+			if (cek == true) {
+				if (inpDate.setHours(0, 0, 0, 0) == currDate.setHours(0, 0, 0, 0)) {
+					if (satu > 5 || dua > 5 || tiga > 5 || empat > 5 || lima > 5 || enam > 5) {
+						alert("orders exceed the available stock today. to order drinks with an amount exceeding today's stock, can contact 0877 0080 1999/0812 8646 4035 or can do PO");
+						if (satu > 5) {
+							document.getElementById("1").innerHTML = 5;
+							document.getElementById("stock1").innerHTML = 0;
+						}
+						if (dua > 5) {
+							document.getElementById("2").innerHTML = 5;
+							document.getElementById("stock2").innerHTML = 0;
+						}
+						if (tiga > 5) {
+							document.getElementById("3").innerHTML = 5;
+							document.getElementById("stock3").innerHTML = 0;
+						}
+						if (empat > 5) {
+							document.getElementById("4").innerHTML = 5;
+							document.getElementById("stock4").innerHTML = 0;
+						}
+						if (lima > 5) {
+							document.getElementById("5").innerHTML = 5;
+							document.getElementById("stock5").innerHTML = 0;
+						}
+						if (enam > 5) {
+							document.getElementById("6").innerHTML = 5;
+							document.getElementById("stock6").innerHTML = 0;
+						}
+						if (tujuh > 5) {
+							document.getElementById("7").innerHTML = 5;
+							document.getElementById("stock7").innerHTML = 0;
+						}
+						if (delapan > 5) {
+							document.getElementById("8").innerHTML = 5;
+							document.getElementById("stock8").innerHTML = 0;
+						}
+						if (sembilan > 5) {
+							document.getElementById("9").innerHTML = 5;
+							document.getElementById("stock9").innerHTML = 0;
+						}
+						if (sepuluh > 5) {
+							document.getElementById("10").innerHTML = 5;
+							document.getElementById("stock10").innerHTML = 0;
+						}
+						if (sebelas > 5) {
+							document.getElementById("11").innerHTML = 5;
+							document.getElementById("stock11").innerHTML = 0;
+						}
+						if (duabelas > 5) {
+							document.getElementById("12").innerHTML = 5;
+							document.getElementById("stock12").innerHTML = 0;
+						}
+						cek2 = false;
+					}
+				}
+			}
+
+			if (cek == true && cek2 == true) {
+				$(document).ready(function () {
+					$("#buyModal").modal();
+					$("#menuModal").modal("hide");
+					$("#myModal").modal("hide");
+				});
+				document.getElementById("data").innerHTML = '<button type="button" class="btn btn-default" onclick="check()" id="checker">pick a drink</button>';
+			}
+		}
+
+		function buy2() {
+			var cek = true;
+			var cek2 = true;
+			document.getElementById("od").innerHTML = "";
+
+			var satu = document.getElementById("1").innerHTML;
+			var dua = document.getElementById("2").innerHTML;
+			var tiga = document.getElementById("3").innerHTML;
+			var empat = document.getElementById("4").innerHTML;
+			var lima = document.getElementById("5").innerHTML;
+			var enam = document.getElementById("6").innerHTML;
+			var tujuh = document.getElementById("7").innerHTML;
+			var delapan = document.getElementById("8").innerHTML;
+			var sembilan = document.getElementById("9").innerHTML;
+			var sepuluh = document.getElementById("10").innerHTML;
+			var sebelas = document.getElementById("11").innerHTML;
+			var duabelas = document.getElementById("12").innerHTML;
+
+			var tgl = document.getElementById("date").value;
+
+			var total = (satu * 15000) + (dua * 15000) + (tiga * 17000) + (empat * 17000) + (lima * 17000) + (enam * 17000);
+			var inpDate = new Date(tgl);
+			var currDate = new Date();
+
+			if (satu != 0) {
+				document.getElementById("od").innerHTML += "<br>" + satu + "x &nbsp; Javanica <a style='float: right;' >Rp" + (satu * 15000) + "</a>";
+			}
+			if (dua != 0) {
+				document.getElementById("od").innerHTML += "<br>" + dua + "x &nbsp; Dark Javanica <a style='float: right;' >Rp" + (dua * 15000) + "</a>";
+			}
+			if (tiga != 0) {
+				document.getElementById("od").innerHTML += "<br>" + tiga + "x &nbsp; Pink Latte <a style='float: right;' >Rp" + (tiga * 17000) + "</a>";
+			}
+			if (empat != 0) {
+				document.getElementById("od").innerHTML += "<br>" + empat + "x &nbsp; Matcha <a style='float: right;' >Rp" + (empat * 17000) + "</a>";
+			}
+			if (lima != 0) {
+				document.getElementById("od").innerHTML += "<br>" + lima + "x &nbsp; Havana <a style='float: right;' >Rp" + (lima * 17000) + "</a>";
+			}
+			if (enam != 0) {
+				document.getElementById("od").innerHTML += "<br>" + enam + "x &nbsp; Mocha <a style='float: right;' >Rp" + (enam * 17000) + "</a>";
+			}
+			if (satu == 0 && dua == 0 && tiga == 0 && empat == 0 && lima == 0 && enam == 0) {
+				document.getElementById("od").innerHTML = "You have no orders yet.";
+			}
+			document.getElementById("sub").innerHTML = "Rp" + total;
+
+			if (cek == true) {
+				if (inpDate.setHours(0, 0, 0, 0) == currDate.setHours(0, 0, 0, 0)) {
+					if (satu > 5 || dua > 5 || tiga > 5 || empat > 5 || lima > 5 || enam > 5) {
+						alert("orders exceed the available stock today. to order drinks with an amount exceeding today's stock, can contact 0877 0080 1999/0812 8646 4035 or can do PO");
+						if (satu > 5) {
+							document.getElementById("1").innerHTML = 5;
+							document.getElementById("stock1").innerHTML = 0;
+						}
+						if (dua > 5) {
+							document.getElementById("2").innerHTML = 5;
+							document.getElementById("stock2").innerHTML = 0;
+						}
+						if (tiga > 5) {
+							document.getElementById("3").innerHTML = 5;
+							document.getElementById("stock3").innerHTML = 0;
+						}
+						if (empat > 5) {
+							document.getElementById("4").innerHTML = 5;
+							document.getElementById("stock4").innerHTML = 0;
+						}
+						if (lima > 5) {
+							document.getElementById("5").innerHTML = 5;
+							document.getElementById("stock5").innerHTML = 0;
+						}
+						if (enam > 5) {
+							document.getElementById("6").innerHTML = 5;
+							document.getElementById("stock6").innerHTML = 0;
+						}
+						if (tujuh > 5) {
+							document.getElementById("7").innerHTML = 5;
+							document.getElementById("stock7").innerHTML = 0;
+						}
+						if (delapan > 5) {
+							document.getElementById("8").innerHTML = 5;
+							document.getElementById("stock8").innerHTML = 0;
+						}
+						if (sembilan > 5) {
+							document.getElementById("9").innerHTML = 5;
+							document.getElementById("stock9").innerHTML = 0;
+						}
+						if (sepuluh > 5) {
+							document.getElementById("10").innerHTML = 5;
+							document.getElementById("stock10").innerHTML = 0;
+						}
+						if (sebelas > 5) {
+							document.getElementById("11").innerHTML = 5;
+							document.getElementById("stock11").innerHTML = 0;
+						}
+						if (duabelas > 5) {
+							document.getElementById("12").innerHTML = 5;
+							document.getElementById("stock12").innerHTML = 0;
+						}
+						cek2 = false;
+					}
+				}
+			}
+
+			if (cek == true && cek2 == true) {
+				$(document).ready(function () {
+					$("#javanicaModal").modal("hide");
+					$("#dJavaModal").modal("hide");
+					$("#pinkModal").modal("hide");
+					$("#matchaModal").modal("hide");
+					$("#havanaModal").modal("hide");
+					$("#mochaModal").modal("hide");
+				});
+				document.getElementById("data").innerHTML = '<button type="button" class="btn btn-default" onclick="check()" id="checker">pick a drink</button>';
+			}
+		}
+
+		function edit() {
+			var cek = true;
+
+			document.getElementById("data").innerHTML = '<button type="button" class="btn btn-default" onclick="save()">OK</button>';
+			if (cek == true) {
+				$(document).ready(function () {
+					$("#myModal").modal();
+					$("#buyModal").modal("hide");
+				});
+			}
+		}
+
+		function save() {
+			var cek = true;
+			var cek2 = true;
+			var nama = document.getElementById("fname").value;
+			var ph = document.getElementById("phone").value;
+			var tgl = document.getElementById("date").value;
+			var linee = document.getElementById("line").value;
+			var almt = document.getElementById("address").value;
+			var wktu = document.getElementById("time").value;
+			var satu = document.getElementById("1").innerHTML;
+			var dua = document.getElementById("2").innerHTML;
+			var tiga = document.getElementById("3").innerHTML;
+			var empat = document.getElementById("4").innerHTML;
+			var lima = document.getElementById("5").innerHTML;
+			var enam = document.getElementById("6").innerHTML;
+			var tujuh = document.getElementById("7").innerHTML;
+			var delapan = document.getElementById("8").innerHTML;
+			var sembilan = document.getElementById("9").innerHTML;
+			var sepuluh = document.getElementById("10").innerHTML;
+			var sebelas = document.getElementById("11").innerHTML;
+			var duabelas = document.getElementById("12").innerHTML;
+			var inpDate = new Date(tgl);
+			var currDate = new Date();
+
+			if (nama.length == 0 || ph.length == 0 || tgl.length == 0 || almt.length == 0 || wktu.length == 0) {
+				alert("Please complete the data to simplify the order process.");
+				cek = false;
+
+			}
+
+			if (cek == true) {
+				if (inpDate.setHours(0, 0, 0, 0) == currDate.setHours(0, 0, 0, 0)) {
+					if (satu > 5 || dua > 5 || tiga > 5 || empat > 5 || lima > 5 || enam > 5) {
+						alert("orders exceed the available stock today. to order drinks with an amount exceeding today's stock, can contact 0877 0080 1999 or can do PO");
+						if (satu > 5) {
+							document.getElementById("1").innerHTML = 5;
+							document.getElementById("stock1").innerHTML = 0;
+						}
+						if (dua > 5) {
+							document.getElementById("2").innerHTML = 5;
+							document.getElementById("stock2").innerHTML = 0;
+						}
+						if (tiga > 5) {
+							document.getElementById("3").innerHTML = 5;
+							document.getElementById("stock3").innerHTML = 0;
+						}
+						if (empat > 5) {
+							document.getElementById("4").innerHTML = 5;
+							document.getElementById("stock4").innerHTML = 0;
+						}
+						if (lima > 5) {
+							document.getElementById("5").innerHTML = 5;
+							document.getElementById("stock5").innerHTML = 0;
+						}
+						if (enam > 5) {
+							document.getElementById("6").innerHTML = 5;
+							document.getElementById("stock6").innerHTML = 0;
+						}
+						if (tujuh > 5) {
+							document.getElementById("7").innerHTML = 5;
+							document.getElementById("stock7").innerHTML = 0;
+						}
+						if (delapan > 5) {
+							document.getElementById("8").innerHTML = 5;
+							document.getElementById("stock8").innerHTML = 0;
+						}
+						if (sembilan > 5) {
+							document.getElementById("9").innerHTML = 5;
+							document.getElementById("stock9").innerHTML = 0;
+						}
+						if (sepuluh > 5) {
+							document.getElementById("10").innerHTML = 5;
+							document.getElementById("stock10").innerHTML = 0;
+						}
+						if (sebelas > 5) {
+							document.getElementById("11").innerHTML = 5;
+							document.getElementById("stock11").innerHTML = 0;
+						}
+						if (duabelas > 5) {
+							document.getElementById("12").innerHTML = 5;
+							document.getElementById("stock12").innerHTML = 0;
+						}
+						cek2 = false;
+					}
+				}
+				else if (inpDate.setHours(0, 0, 0, 0) < currDate.setHours(0, 0, 0, 0)) {
+					alert("order can only be made at least one day after today");
+					cek2 = false;
+				}
+			}
+
+			document.getElementById("nameO").innerHTML = nama + " ( " + ph;
+			if (linee.length != 0) {
+				document.getElementById("nameO").innerHTML += " - line : " + linee + ")";
+			}
+			else {
+				document.getElementById("nameO").innerHTML += ")";
+			}
+
+			document.getElementById("addO").innerHTML = almt;
+			document.getElementById("dateO").innerHTML = tgl;
+			document.getElementById("timeO").innerHTML = wktu;
+
+			if (cek2 == true && cek == true) {
+				$(document).ready(function () {
+					$("#buyModal").modal();
+					$("#myModal").modal("hide");
+				});
+			}
+		}
+
+		function pay() {
+			var cek = true;
+			var nama = document.getElementById("fname").value;
+			var ph = document.getElementById("phone").value;
+			var tgl = document.getElementById("date").value;
+			var linee = document.getElementById("line").value;
+			var almt = document.getElementById("address").value;
+			var wktu = document.getElementById("time").value;
+			var satu = document.getElementById("1").innerHTML;
+			var dua = document.getElementById("2").innerHTML;
+			var tiga = document.getElementById("3").innerHTML;
+			var empat = document.getElementById("4").innerHTML;
+			var lima = document.getElementById("5").innerHTML;
+			var enam = document.getElementById("6").innerHTML;
+
+			if (nama.length == 0 || ph.length == 0 || tgl.length == 0 || almt.length == 0 || wktu.length == 0) {
+				alert("Please complete the data to continue order process.");
+				cek = false;
+
+			}
+			else if (satu == 0 && dua == 0 && tiga == 0 && empat == 0 && lima == 0 && enam == 0) {
+				cek = false;
+				alert("You have no orders yet.");
+			}
+
+			if (cek == true) {
+				$(document).ready(function () {
+					$("#paymentModal").modal();
+					$("#buyModal").modal("hide");
+				});
+			}
+		}
+
+		function log() {
+			var cek = false;
+			var nama = document.getElementById("fname").value;
+			var ph = document.getElementById("phone").value;
+			var tgl = document.getElementById("date").value;
+			var linee = document.getElementById("line").value;
+			var almt = document.getElementById("address").value;
+			var wktu = document.getElementById("time").value;
+			var satu = document.getElementById("1").innerHTML;
+			var dua = document.getElementById("2").innerHTML;
+			var tiga = document.getElementById("3").innerHTML;
+			var empat = document.getElementById("4").innerHTML;
+			var lima = document.getElementById("5").innerHTML;
+			var enam = document.getElementById("6").innerHTML;
+			var queryString = "?Name : " + nama + "<br>No Hp : " + ph + "<br>Order For : " + tgl + "<br>Line : " + linee + "<br>Address : " + almt + "<br>Delivery Time : " + wktu + "&";
+			if (satu != 0) {
+				queryString += satu + " Javanica<br>";
+			} if (dua != 0) {
+				queryString += dua + " Dark Javanica<br>";
+			} if (tiga != 0) {
+				queryString += tiga + " Pink Latte<br>";
+			} if (empat != 0) {
+				queryString += empat + " Matcha<br>";
+			} if (lima != 0) {
+				queryString += lima + " Havana<br>";
+			} if (enam != 0) {
+				queryString += enam + " Mocha";
+			}
+			if (document.getElementById("uname").value == "admin" && document.getElementById("pw").value == "admin") {
+				cek = true;
+			}
+			if (cek == true) {
+				window.location.href = "coffeeshout_table.html" + queryString;
+				document.getElementById("nameO").innerHTML = "";
+				document.getElementById("addO").innerHTML = "";
+				document.getElementById("dateO").innerHTML = "";
+				document.getElementById("timeO").innerHTML = "";
+				document.getElementById("od").innerHTML = "You have no orders yet.";
+				document.getElementById("sub").innerHTML = "Rp0";
+				document.getElementById("1").innerHTML = 0;
+				document.getElementById("2").innerHTML = 0;
+				document.getElementById("3").innerHTML = 0;
+				document.getElementById("4").innerHTML = 0;
+				document.getElementById("5").innerHTML = 0;
+				document.getElementById("6").innerHTML = 0;
+				document.getElementById("fname").value = "";
+				document.getElementById("phone").value = "";
+				document.getElementById("date").value = "";
+				document.getElementById("line").value = "";
+				document.getElementById("address").value = "";
+				document.getElementById("myfile").value = null;
+				$('#time option').prop('selected', function () {
+					return this.defaultSelected;
+				});
+			} else {
+				alert("You need permission to perform this action.");
+			}
+		}
+
+		function purchase() {
+			var cek = true;
+			if (document.getElementById("myfile").files.length == 0) {
+				cek = false;
+				alert("please select your evidence of transfer!");
+			}
+			if (cek == true) {
+				$(document).ready(function () {
+					$("#paymentModal").modal("hide");
+					// document.getElementById("nameO").innerHTML = "";
+					// document.getElementById("addO").innerHTML = "";
+					// document.getElementById("dateO").innerHTML = "";
+					// document.getElementById("timeO").innerHTML = "";
+					// document.getElementById("od").innerHTML = "You have no orders yet.";
+					// document.getElementById("sub").innerHTML = "Rp0";
+					// document.getElementById("1").innerHTML = 0;
+					// document.getElementById("2").innerHTML = 0;
+					// document.getElementById("3").innerHTML = 0;
+					// document.getElementById("4").innerHTML = 0;
+					// document.getElementById("5").innerHTML = 0;
+					// document.getElementById("6").innerHTML = 0;
+					// document.getElementById("fname").value = "";
+					// document.getElementById("phone").value = "";
+					// document.getElementById("date").value = "";
+					// document.getElementById("line").value = "";
+					// document.getElementById("address").value = "";
+					// document.getElementById("myfile").value = null;
+					// $('#time option').prop('selected', function () {
+					// 	return this.defaultSelected;
+					// });
+					alert("Thanks for Ordering! Your order will be confirmed immediately");
+				});
+			}
+
+		}
+	</script>
+</head>
+
+<body>
+	<a data-toggle="modal" data-target="#buyModal"><img src="img/cart.jpg" class="up"></a>
+	<header id="header" id="home">
+		<div class="header-top">
+			<div class="container">
+
+				<div class="row align-items-center justify-content-between d-flex">
+					<div id="logo">
+						<a href="index.html" text-align="left"><img src="img/Logo.png" width="80px" height="70px" alt=""
+								title="" /></a>
+					</div>
+					<div class="col-lg-8 col-sm-4 col-8 header-top-right no-padding">
+						<ul>
+							<li>
+								Bandung only
+							</li>
+							<li>
+								<a href="tel:087700801999">0877 0080 1999</a>
+							</li>
+							<li>
+								<a href="tel:081286464035">0812 8646 4035 </a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="row align-items-center justify-content-between d-flex">
+				<div id="logo">
+				</div>
+				<nav id="nav-menu-container">
+					<ul class="nav-menu">
+						<li class="menu-active"><a href="#home">Home</a></li>
+						<li><a href="#about">About</a></li>
+						<li><a href="#coffee">Coffee</a></li>
+						<li><a style="color: white;" data-toggle="modal" data-target="#loginModal">List Order</a></li>
+					</ul>
+				</nav><!-- #nav-menu-container -->
+			</div>
+		</div>
+	</header><!-- #header -->
+
+	<div class="modal fade" id="loginModal" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4>Log In</h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+
+				</div>
+				<div class="modal-body">
+					<label>Username <font color="red" size="2px">*</font></label>
+					<input type="text" id="uname" required>
+					<label>Password <font color="red" size="2px">*</font></label>
+					<input type="password" id="pw" required>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" onclick='log()'>Log In</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<!-- start banner Area -->
+
+	<section class="banner-area" id="home">
+		<div class="container">
+			<div class="row fullscreen d-flex align-items-center justify-content-start">
+				<div class="banner-content col-lg-7">
+					<br><br><br>
+					<h1>
+						Our Coffee is LOUDER <br>
+						than your Alarm
+					</h1>
+					<a data-toggle="modal" data-target="#myModal" class="primary-btn text-uppercase">Buy Now</a>
+				</div>
+			</div>
+		</div>
+		<!-- Modal -->
+		<div class="modal fade" id="myModal" role="dialog">
+			<div class="modal-dialog">
+
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4>Input Your Order Data</h4>
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+
+					</div>
+					<div class="modal-body">
+						<label>Order Name <font color="red" size="2px">*</font></label>
+						<input type="text" id="fname" required>
+						<label>Phone Number <font color="red" size="2px">*</font></label>
+						<input type="text" id="phone" required>
+						<label>ID Line </label>
+						<input type="text" id="line">
+						<label>Delivery Address<font color="red" size="2px">*</font></label>
+						<input type="text" id="address" required>
+						<label>Order Date <font color="red" size="2px">*</font></label>
+						<input type="date" id="date" required>
+						<p>* orders on the same day can only be done if stock is available</p>
+						<label>Delivery Time<font color="red" size="2px">*</font></label>
+						<select id="time">
+							<option value="" selected="selected"> Select your delivery time range</option>
+							<option value="09.00-10.00">09.00-12.00</option>
+							<option value="14.00-15.00">13.00-15.00</option>
+							<option value="21.00-22.00">16.00-17.00</option>
+
+						</select>
+					</div>
+					<div class="modal-footer" id="data">
+						<button type="button" class="btn btn-default" onclick='check()' id="checker">pick a
+							drink</button>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		<!-- Modal -->
+		<div class="modal fade" id="menuModal" role="dialog">
+			<div class="modal-dialog">
+
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4>Pick your Drink</h4>
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+
+					</div>
+					<div class="modal-body">
+						<p>Rp15.000,- &nbsp; Javanica
+							&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;Stock : <a id='stock7' class="num2"> 5 </a>
+							<button class="button" onclick='tambah(1)'> + </button>
+							<a id='1' class="num"> 0 </a>
+							<button class="button" onclick='kurang(1)'> - </button>
+						</p>
+						<p>Rp15.000,- &nbsp; Dark Javanica
+							&emsp;&emsp;&emsp;Stock : <a id='stock8' class="num2"> 5 </a>
+							<button class="button" onclick='tambah(2)'> + </button>
+							<a id='2' class="num"> 0 </a>
+							<button class="button" onclick='kurang(2)'> - </button>
+						</p>
+						<p>Rp17.000,- &nbsp; Pink Latte
+							&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;Stock : <a id='stock9' class="num2"> 5 </a>
+							<button class="button" onclick='tambah(3)'> + </button>
+							<a id='3' class="num"> 0 </a>
+							<button class="button" onclick='kurang(3)'> - </button>
+						</p>
+						<p>Rp17.000,- &nbsp; Matcha
+							&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; Stock : <a id='stock10' class="num2"> 5 </a>
+							<button class="button" onclick='tambah(4)'> + </button>
+							<a id='4' class="num"> 0 </a>
+							<button class="button" onclick='kurang(4)'> - </button>
+						</p>
+						<p>Rp17.000,- &nbsp; Havana
+							&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Stock : <a id='stock11' class="num2"> 5 </a>
+							<button class="button" onclick='tambah(5)'> + </button>
+							<a id='5' class="num"> 0 </a>
+							<button class="button" onclick='kurang(5)'> - </button>
+						</p>
+						<p>Rp17.000,- &nbsp; Mocha
+							&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;Stock : <a id='stock12' class="num2"> 5 </a>
+							<button class="button" onclick='tambah(6)'> + </button>
+							<a id='6' class="num"> 0 </a>
+							<button class="button" onclick='kurang(6)'> - </button>
+						</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" onclick='buy()'>Add to Cart</button>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		<!-- Modal -->
+		<div class="modal fade" id="buyModal" role="dialog">
+			<div class="modal-dialog">
+
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4>Cart</h4>
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+
+					</div>
+					<div class="modal-body">
+						<p>Order Name : <a id="nameO"></a></p>
+						<p>Deliver to : <a id="addO"></a></p>
+						<p>Order for : <a id="dateO"></a></p>
+						<p>Delivery Time : <a id="timeO"></a></p>
+						<p>Your Order From <b>Coffee Shout :</b></p>
+						<p id="od">You have no orders yet.</p>
+						<br>
+						<p>Subtotal
+							<a style="float: right;" id="sub">Rp0</a>
+						</p>
+
+
+
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal" data-toggle="modal"
+							data-target="#menuModal">Update Cart</button>
+						<button type="button" class="btn btn-default" onclick="edit()">Edit Order Data</button>
+						<button type="button" class="btn btn-default" onclick="reset()">Reset Cart</button>
+						<button type="button" class="btn btn-default" onclick="pay()">Buy</button>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		<!-- Modal -->
+		<div class="modal fade" id="paymentModal" role="dialog">
+			<div class="modal-dialog">
+
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4>Payment</h4>
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+
+					</div>
+					<div class="modal-body">
+						<p>payment can be made via :
+							<br> bank transfer : 000000 a.n Coffee Shout
+							<br> Gopay / Ovo / Dana : 0877 0080 1999 a.n Coffee Shout<br><br>
+							<label for="myfile">Select a file:</label>
+							<input type="file" id="myfile" name="myfile"><br><br>
+						</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" onclick="purchase()">Purchase</button>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</section>
+	<!-- End banner Area -->
+
+	<br><br><br><br>
+	<!-- Start gallery Area -->
+	<section class="gallery-area section-gap" style="background-image: url('img/menu-bg.jpg');">
+		<div class="container">
+			<div class="row d-flex justify-content-center">
+				<div class="menu-content pb-60 col-lg-10">
+					<div class="title text-center">
+						<h1 class="mb-10">Coffee Shout's Testimony<i class="fa fa-heart"></i></h1>
+						<p>thanks for choosing us!</p>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div style="width: 15%; margin: 0 auto; text-align: center;">
+					<img src="img/kobi.png" width="10px" height="150px" style="float: left;">
+				</div>
+				<div style="width: 50%; margin: 0 auto; text-align: center;">
+					<br>
+					<h5><b>Nucky Vilano</b></h5>
+					<p>Saya mahasiswa maranatha, setiap hari pulang malam dan sering mengantuk, walau saya bukan penikmat kopi, saat ditawari mencoba CoffeeShout saya terkejut dengan rasa yang menarik dan membantu saya menjalani hari-hari saya saat kuliah.</p>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- End gallery Area -->
+
+	<!-- Start video-sec Area -->
+	<section class="video-sec-area pb-100 pt-40" id="about">
+		<div class="container">
+			<div class="row justify-content-start align-items-center">
+				<div class="col-lg-6 video-right justify-content-center align-items-center d-flex">
+					<!-- <div class="overlay overlay-bg"></div> -->
+					<a class="play-btn" href="img/video.mp4"><img class="img-fluid"
+						src="img/play-icon.png" alt=""></a>
+					<div class="overlay"></div>
+				</div>
+
+				<div class="col-lg-6 video-left">
+					<h6>Procaffeinating</h6>
+					<p>(n) <br> The tendency not to start anything until you had a bottle of coffee.</p>
+					<h1>Experience the <br>
+						Full Taste :)</h1>
+					<p><span>Oh Look, It's Coffee o'clock!</span></p>
+					<p>
+						Coffee Shout is dedicated to the passionate baristas that make each coffee unforgetable.
+						Our mission stayed the same that is to express our passion
+						for Indonesian Robusta - Arabica Beans and to make it accessible, appreciated and easy to
+						enjoy.
+						We are proud of our of uncompromising quality and
+						it is our aim to give you unrealistic expectations of productivity.
+					</p>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- End video-sec Area -->
+
+	<!-- Start menu Area -->
+	<section class="menu-area section-gap" id="coffee">
+		<div class="container">
+			<div class="row d-flex justify-content-center">
+				<div class="menu-content pb-60 col-lg-10">
+					<div class="title text-center">
+						<h1 class="mb-10">What kind of Drink we serve for you</h1>
+						<p>A Coffee a day keeps the grumpy away.</p>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-4">
+					<div class="single-menu">
+						<div class="title-div justify-content-between d-flex" data-toggle="modal" data-target="#javanicaModal">
+							<a>
+								<h4>Javanica</h4>
+							</a>
+							<p class="price float-right">
+								15k
+							</p>
+						</div>
+						<p>
+							Mix between robusta coffee and arabica coffee + milk + special palm sugar.
+							<br><br>
+						</p>
+					</div>
+				</div>
+				<!-- Modal -->
+				<div class="modal fade" id="javanicaModal" role="dialog">
+					<div class="modal-dialog">
+
+						<!-- Modal content-->
+						<div class="modal-content">
+							<div class="modal-header">
+								<h4>Javanica</h4>
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+
+							</div>
+							<div class="modal-body">
+								<div style="margin: auto;padding: 10px;">
+									<img src="img/java.jpg" width="90%"
+										style="display : block; margin-left: auto; margin-right: auto;">
+									<br>
+									<p style="text-align: center;">
+										Mix between robusta coffee and arabica coffee + milk + <br>special palm sugar.
+									</p>
+								</div>
+								<p>stock :<a id='stock1' class="num2"> 5 </a></p>
+								<div style="margin: auto;width: 30%;padding: 10px;">
+									<button class="button2" onclick='kurang(1)' style="float: center;"> - </button>
+									<a id='7' class="num2" style="float: center;"> 0 </a>
+									<button class="button2" onclick='tambah(1)' style="float: center;"> + </button>
+								</div>
+
+							</div>
+							<div class="modal-footer">
+								<p>
+
+									<button type="button" class="btn btn-default" onclick='buy2()'>Add to Cart</button>
+								</p>
+							</div>
+						</div>
+
+					</div>
+				</div>
+				<div class="col-lg-4">
+					<div class="single-menu">
+						<div class="title-div justify-content-between d-flex" data-toggle="modal" data-target="#dJavaModal">
+							<a>
+								<h4>Dark Javanica</h4>
+							</a>
+							<p class="price float-right">
+								15k
+							</p>
+						</div>
+						<p>
+							Mix between strong robusta coffee and strong arabica coffee + milk + special palm sugar
+						</p>
+					</div>
+				</div>
+				<!-- Modal -->
+				<div class="modal fade" id="dJavaModal" role="dialog">
+					<div class="modal-dialog">
+
+						<!-- Modal content-->
+						<div class="modal-content">
+							<div class="modal-header">
+								<h4>Dark Javanica</h4>
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+
+							</div>
+							<div class="modal-body">
+								<div style="margin: auto;padding: 10px;">
+									<img src="img/djava.jpg" width="90%"
+										style="display : block; margin-left: auto; margin-right: auto;">
+									<br>
+									<p style="text-align: center;">
+										Mix between strong robusta coffee and strong arabica coffee  <br>+ milk +special
+										palm sugar.
+									</p>
+								</div>
+								<p>stock :<a id='stock2' class="num2"> 5 </a></p>
+								<div style="margin: auto;width: 30%;padding: 10px;">
+									<button class="button2" onclick='kurang(2)' style="float: center;"> - </button>
+									<a id='8' class="num2" style="float: center;"> 0 </a>
+									<button class="button2" onclick='tambah(2)' style="float: center;"> + </button>
+								</div>
+							</div>
+							<div class="modal-footer">
+								<p>
+									<button type="button" class="btn btn-default" onclick='buy2()'>Add to Cart</button>
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4">
+					<div class="single-menu">
+						<div class="title-div justify-content-between d-flex" data-toggle="modal" data-target="#pinkModal">
+							<a>
+								<h4>Pink Latte</h4>
+							</a>
+							<p class="price float-right">
+								17k
+							</p>
+						</div>
+						<p>
+							Coffee with unique taste, sweet, creamy, fruity with our secret ingredient.
+							<br><br>
+						</p>
+					</div>
+				</div>
+				<!-- Modal -->
+				<div class="modal fade" id="pinkModal" role="dialog">
+					<div class="modal-dialog">
+
+						<!-- Modal content-->
+						<div class="modal-content">
+							<div class="modal-header">
+								<h4>Pink Latte</h4>
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+
+							</div>
+							<div class="modal-body">
+								<div style="margin: auto;padding: 10px;">
+									<img src="img/pink.jpg" width="90%"
+										style="display : block; margin-left: auto; margin-right: auto;">
+									<br>
+									<p style="text-align: center;">
+										Coffee with unique taste, sweet, creamy, fruity with our secret ingredient.
+									</p>
+								</div>
+								<p>stock :<a id='stock3' class="num2"> 5 </a></p>
+								<div style="margin: auto;width: 30%;padding: 10px;">
+									<button class="button2" onclick='kurang(3)' style="float: center;"> - </button>
+									<a id='9' class="num2" style="float: center;"> 0 </a>
+									<button class="button2" onclick='tambah(3)' style="float: center;"> + </button>
+								</div>
+
+							</div>
+							<div class="modal-footer">
+								<p>
+
+									<button type="button" class="btn btn-default" onclick='buy2()'>Add to Cart</button>
+								</p>
+							</div>
+						</div>
+
+					</div>
+				</div>
+				<div class="col-lg-4">
+					<div class="single-menu">
+						<div class="title-div justify-content-between d-flex"  data-toggle="modal" data-target="#matchaModal">
+							<a>
+								<h4>Matcha</h4>
+							</a>
+							<p class="price float-right">
+								17k
+							</p>
+						</div>
+						<p>
+							Premium matcha with our secret recipe.
+							<br><br><br>
+						</p>
+					</div>
+				</div>
+				<!-- Modal -->
+				<div class="modal fade" id="matchaModal" role="dialog">
+					<div class="modal-dialog">
+
+						<!-- Modal content-->
+						<div class="modal-content">
+							<div class="modal-header">
+								<h4>Matcha</h4>
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+
+							</div>
+							<div class="modal-body">
+								<div style="margin: auto;padding: 10px;">
+									<img src="img/matcha.jpg" width="90%"
+										style="display : block; margin-left: auto; margin-right: auto;">
+									<br>
+									<p style="text-align: center;">
+										Premium matcha with our secret recipe.
+									</p>
+								</div>
+								<p>stock :<a id='stock4' class="num2"> 5 </a></p>
+								<div style="margin: auto;width: 30%;padding: 10px;">
+									<button class="button2" onclick='kurang(4)' style="float: center;"> - </button>
+									<a id='10' class="num2" style="float: center;"> 0 </a>
+									<button class="button2" onclick='tambah(4)' style="float: center;"> + </button>
+								</div>
+
+							</div>
+							<div class="modal-footer">
+								<p>
+
+									<button type="button" class="btn btn-default" onclick='buy2()'>Add to Cart</button>
+								</p>
+							</div>
+						</div>
+
+					</div>
+				</div>
+				<div class="col-lg-4">
+					<div class="single-menu">
+						<div class="title-div justify-content-between d-flex" data-toggle="modal" data-target="#havanaModal">
+							<a>
+								<h4>Havana</h4>
+							</a>
+							<p class="price float-right">
+								17k
+							</p>
+						</div>
+						<p>
+							Coffee Shout's special huzelnut latte.
+							<br><br><br>
+						</p>
+					</div>
+				</div>
+				<!-- Modal -->
+				<div class="modal fade" id="havanaModal" role="dialog">
+					<div class="modal-dialog">
+
+						<!-- Modal content-->
+						<div class="modal-content">
+							<div class="modal-header">
+								<h4>Havana</h4>
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+
+							</div>
+							<div class="modal-body">
+								<div style="margin: auto;padding: 10px;">
+									<img src="img/havana.jpg" width="90%"
+										style="display : block; margin-left: auto; margin-right: auto;">
+									<br>
+									<p style="text-align: center;">
+										Coffee Shout's special huzelnut latte.
+									</p>
+								</div>
+								<p>stock :<a id='stock5' class="num2"> 5 </a></p>
+								<div style="margin: auto;width: 30%;padding: 10px;">
+									<button class="button2" onclick='kurang(5)' style="float: center;"> - </button>
+									<a id='11' class="num2" style="float: center;"> 0 </a>
+									<button class="button2" onclick='tambah(5)' style="float: center;"> + </button>
+								</div>
+
+							</div>
+							<div class="modal-footer">
+								<p>
+
+									<button type="button" class="btn btn-default" onclick='buy2()'>Add to Cart</button>
+								</p>
+							</div>
+						</div>
+
+					</div>
+				</div>
+				<div class="col-lg-4">
+					<div class="single-menu">
+						<div class="title-div justify-content-between d-flex" data-toggle="modal" data-target="#mochaModal">
+							<a>
+								<h4>Mocha</h4>
+							</a>
+							<p class="price float-right">
+								17k
+							</p>
+						</div>
+						<p>
+							Mix between strong robusta coffee and arabica coffee + milk + chocolate.
+							<br><br>
+						</p>
+					</div>
+				</div>
+				<!-- Modal -->
+				<div class="modal fade" id="mochaModal" role="dialog">
+					<div class="modal-dialog">
+
+						<!-- Modal content-->
+						<div class="modal-content">
+							<div class="modal-header">
+								<h4>Mocha</h4>
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+
+							</div>
+							<div class="modal-body">
+								<div style="margin: auto;padding: 10px;">
+									<img src="img/mocha.jpg" width="90%"
+										style="display : block; margin-left: auto; margin-right: auto;">
+									<br>
+									<p style="text-align: center;">
+										Mix between strong robusta coffee and arabica coffee + milk + chocolate.
+									</p>
+								</div>
+								<p>stock :<a id='stock6' class="num2"> 5 </a></p>
+								<div style="margin: auto;width: 30%;padding: 10px;">
+									<button class="button2" onclick='kurang(6)' style="float: center;"> - </button>
+									<a id='12' class="num2" style="float: center;"> 0 </a>
+									<button class="button2" onclick='tambah(6)' style="float: center;"> + </button>
+								</div>
+
+							</div>
+							<div class="modal-footer">
+								<p>
+
+									<button type="button" class="btn btn-default" onclick='buy2()'>Add to Cart</button>
+								</p>
+							</div>
+						</div>
+
+					</div>
+				</div>
+				<div class="col-lg-4">
+				</div>
+			</div>
+	</section>
+	<!-- End menu Area -->
+
+	<!-- Start gallery Area -->
+	<section class="gallery-area section-gap" id="gallery">
+		<div class="container">
+			<div class="row d-flex justify-content-center">
+				<div class="menu-content pb-60 col-lg-10">
+					<div class="title text-center">
+						<h1 class="mb-10">Today's good mood is sponsored by Coffee<i class="fa fa-heart"></i></h1>
+						<p>hand-selected Coffee.</p>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-4">
+					<a href="img/g1.jpg" class="img-pop-home">
+						<img class="img-fluid" src="img/g1.jpg" alt="">
+					</a>
+					<a href="img/g2.jpg" class="img-pop-home">
+						<img class="img-fluid" src="img/g2.jpg" alt="">
+					</a>
+				</div>
+				<div class="col-lg-8">
+					<a href="img/g3.jpg" class="img-pop-home">
+						<img class="img-fluid" src="img/g3.jpg" alt="">
+					</a>
+					<div class="row">
+						<div class="col-lg-6">
+							<a href="img/g4.jpg" class="img-pop-home">
+								<img class="img-fluid" src="img/g4.jpg" alt="">
+							</a>
+						</div>
+						<div class="col-lg-6">
+							<a href="img/g5.jpg" class="img-pop-home">
+								<img class="img-fluid" src="img/g5.jpg" alt="">
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- End gallery Area -->
+
+
+
+	<!-- start footer Area -->
+	<footer class="footer-area section-gap">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-5 col-md-6 col-sm-6">
+					<div class="single-footer-widget">
+						<h6>About Us</h6>
+						<p text-align : center>
+							Coffee is a magical, dark substance that turn drowsiness into ideas
+							and it is our goal is to make everything gets better with coffee.<br>
+							Coffee Shout is devoted to connecting coffee-lover with the finest roasters in the world.
+						</p>
+						<p class="footer-text">
+							Copyright &copy;
+							<script>document.write(new Date().getFullYear());</script> All rights reserved
+						</p>
+					</div>
+				</div>
+				<div class="col-lg-2  col-md-6 col-sm-6">
+				</div>
+				<div class="col-lg-5 col-md-6 col-sm-6 social-widget">
+					<div class="single-footer-widget">
+						<h6>Follow Us</h6>
+						<i class="fa fa-instagram">&nbsp; &nbsp; &nbsp;
+							<a href="https://www.instagram.com/coffeeshout/" style="color: white;"> @coffeeshout </a>
+						</i>
+						<br><br>
+						<img src="img/scan.png" height="200px" width="200px">
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!-- End footer Area -->
+
+	<script src="js/vendor/jquery-2.2.4.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+		integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+		crossorigin="anonymous"></script>
+	<script src="js/vendor/bootstrap.min.js"></script>
+	<script type="text/javascript"
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>
+	<script src="js/easing.min.js"></script>
+	<script src="js/hoverIntent.js"></script>
+	<script src="js/superfish.min.js"></script>
+	<script src="js/jquery.ajaxchimp.min.js"></script>
+	<script src="js/jquery.magnific-popup.min.js"></script>
+	<script src="js/owl.carousel.min.js"></script>
+	<script src="js/jquery.sticky.js"></script>
+	<script src="js/jquery.nice-select.min.js"></script>
+	<script src="js/parallax.min.js"></script>
+	<script src="js/waypoints.min.js"></script>
+	<script src="js/jquery.counterup.min.js"></script>
+	<script src="js/mail-script.js"></script>
+	<script src="js/main.js"></script>
+</body>
+
+</html>

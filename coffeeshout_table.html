@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Coffee Shout</title>
+  <link rel="shortcut icon" href="img/Logo.png">
+  <link rel="stylesheet" type="text/css"
+    href="https://cdn.datatables.net/v/dt/jq-3.3.1/dt-1.10.18/datatables.min.css" />
+  <script type="text/javascript" src="https://cdn.datatables.net/v/dt/jq-3.3.1/dt-1.10.18/datatables.min.js"></script>
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
+  <style>
+    body {
+      background-image: url("img/menu-bg.jpg");
+    }
+  </style>
+</head>
+
+<body style="font-family: Calibri;">
+  <style media="screen">
+    .mantapjiwa,
+    .mantapsoul {
+      background-color: #a36e0a;
+      color: white;
+    }
+
+    .but {
+      width: 50%;
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      resize: vertical;
+    }
+  </style>
+  <div class="tops">
+    <img src="img/Logo.png" width="80px" height="70px" style="float: left; margin-right: 50px;margin-left: 20px;" />
+    <h1 style="color: #755313;">Coffee Shout Selling</h1>
+  </div>
+  <div class="mantapjiwa" style="margin-top: 50px;">
+    <h1 align=center>ONGOING ORDER</h1>
+  </div>
+  <div id="table1">
+
+  </div>
+  <div class="mantapsoul">
+    <h1 align=center>FINISHED ORDER</h1>
+  </div>
+  <table id="myTable">
+    <thead>
+      <tr>
+        <th>No. </th>
+        <th>Data Order</th>
+        <th>List Order</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td align="center" id='td11'></td>
+        <td align="justify" id="td12"></td>
+        <td align="justify" id='td13'></td>
+        <td align="center" id='td14'></td>
+      </tr>
+    </tbody>
+  </table>
+  <script type='text/javascript'>
+    function pindah() {
+      var satu = document.getElementById("td1").innerHTML;
+      var dua = document.getElementById("td2").innerHTML;
+      $(document).ready(function () {
+        $("#td1").hide();
+        $("#td2").hide();
+        $("#td3").hide();
+        $("#td4").hide();
+        $("#td0").hide();
+      });
+      document.getElementById("td11").innerHTML = "1";
+      document.getElementById("td12").innerHTML = satu;
+      document.getElementById("td13").innerHTML = dua;
+      document.getElementById("td14").innerHTML = "Done";
+      document.getElementById("foto").style.visibility = 'hidden';
+    }
+    var queryString = decodeURIComponent(window.location.search);
+    queryString = queryString.substring(1);
+    var queries = queryString.split("&");
+    var isi = "<table id='iniTable'>";
+    isi += "<thead>";
+    isi += "<tr>";
+    isi += "<th>No. </th>";
+    isi += "<th>Data Order</th>";
+    isi += "<th>Transfer Evidence</th>";
+    isi += "<th>List Order</th>";
+    isi += "<th>Status</th>";
+    isi += "</tr>";
+    isi += "</thead>";
+    isi += "<tbody>";
+
+    isi += "<tr>";
+    isi += "<td align=center id='td0'>" + (1) + "</td>";
+    isi += "<td align=justify id='td1'><br>" + queries[0] + "</td>";
+    isi += "<td align=center id='td4'><button onclick='buka()' id='bt9' class='but'>Open Pict</button><br><br><img id='foto' src='' style='float:left'></td>";
+    isi += "<td align=justify id='td2'>" + queries[1] + "</td>";
+    isi += "<td align=center id='td3'><button onclick='pindah()' class='but'>DONE</button></td>";
+    isi += "</tr>";
+
+    isi += "</tbody>";
+    isi += "</table>";
+    document.getElementById("table1").innerHTML = isi;
+    $(document).ready(function () {
+      $('#iniTable').DataTable()
+    });
+    document.getElementById("table1").innerHTML = isi;
+    $(document).ready(function () {
+      $('#myTable').DataTable()
+    });
+
+    function buka() {
+      document.getElementById("foto").src = 'img/transfer.jpg';
+      
+    }
+  </script>
+</body>
+
+</html>
